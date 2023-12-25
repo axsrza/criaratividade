@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criar Atividade</title>
+</head>
+<body>
+    <h1>Criar Nova Atividade</h1>
+    
+    <form id="atividadeForm">
+        <label for="nomeAtividade">Nome da Atividade:</label>
+        <input type="text" id="nomeAtividade" required><br>
+
+        <label for="descricao">Descrição:</label>
+        <textarea id="descricao" required></textarea><br>
+
+        <label for="dataInicio">Data de Início:</label>
+        <input type="date" id="dataInicio" required><br>
+
+        <label for="dataTermino">Data de Término:</label>
+        <input type="date" id="dataTermino" required><br>
+
+        <button type="button" onclick="criarAtividade()">Criar Atividade</button>
+    </form>
+
+    <script>
+        function criarAtividade() {
+            // Adicione aqui o código para chamar a API GraphQL do ARTIA e criar a atividade
+            // Você precisará usar JavaScript para fazer isso.
+            // Pode usar bibliotecas como Axios ou Fetch para fazer requisições HTTP.
+            // Lembre-se de lidar com autenticação, se necessário.
+            console.log("Função para criar atividade aqui.");
+        }
+    </script>
+</body>
+</html>
