@@ -26,7 +26,8 @@
 
     <script>
         async function criarAtividade() {
-            const url = 'app.artia.com/graphql';
+            const corsAnywhereUrl = 'https://cors-anywhere.herokuapp.com/';
+            const apiUrl = 'https://app.artia.com/graphql';
             const token = 'eyJhbGciOiJIUzI1NiJ9.eyJvcmdhbml6YXRpb25faWQiOjE0MTAyOSwiZXhwIjoxNzA3MDgwMDk2fQ.pVQXsj1-cRCRTm8ezWR7xi10SMKgOX7mvmGh19kS3Mg';
             const organizationId = 141029;
 
@@ -52,7 +53,7 @@
             `;
 
             try {
-                const response = await fetch(url, {
+                const response = await fetch(corsAnywhereUrl + apiUrl, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
