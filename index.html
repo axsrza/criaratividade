@@ -31,7 +31,7 @@
         async function criarAtividade() {
             const corsAnywhereUrl = 'https://artia-b7b651191bad.herokuapp.com/';
             const apiUrl = 'https://app.artia.com/graphql';
-            const token = 'eyJhbGciOiJIUzI1NiJ9.eyJvcmdhbml6YXRpb25faWQiOjE0MTAyOSwiZXhwIjoxNzA3MDgwMDk2fQ.pVQXsj1-cRCRTm8ezWR7xi10SMKgOX7mvmGh19kS3Mg';
+            const token = 'eyJhbGciOiJIUzI1NiJ9.eyJvcmdhbml6YXRpb25faWQiOjE0MTAyOSwiZXhwIjoxNzA3MDg1MDgyfQ.JXK_ZcAM2Q2M9xIVWZzPEi4bdWTLfv5nFkkCW4XTvGg';
             const organizationId = 141029;
 
             const nomeAtividadeInput = document.getElementById('nomeAtividade');
@@ -94,6 +94,8 @@
                 }
             } catch (error) {
                 console.error('Erro ao criar atividade:', error);
+                // Adicionar a seguinte linha para logar a mensagem de erro detalhada no console
+                console.error('Erro detalhado:', error.message);
             }
         }
     </script>
