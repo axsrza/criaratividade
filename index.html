@@ -25,12 +25,48 @@
     </form>
 
     <script>
-        function criarAtividade() {
-            // Adicione aqui o código para chamar a API GraphQL do ARTIA e criar a atividade
-            // Você precisará usar JavaScript para fazer isso.
-            // Pode usar bibliotecas como Axios ou Fetch para fazer requisições HTTP.
-            // Lembre-se de lidar com autenticação, se necessário.
-            console.log("Função para criar atividade aqui.");
+        async function criarAtividade() {
+            const url = 'https://app.artia.com/graphql';
+            const token = 'eyJhbGciOiJIUzI1NiJ9.eyJvcmdhbml6YXRpb25faWQiOjE0MTAyOSwiZXhwIjoxNzA3MDgwMDk2fQ.pVQXsj1-cRCRTm8ezWR7xi10SMKgOX7mvmGh19kS3Mg';
+            const organizationId = 141029;
+
+            const nomeAtividade = document.getElementById('nomeAtividade').value;
+            const descricao = document.getElementById('descricao').value;
+            const dataInicio = document.getElementById('dataInicio').value;
+            const dataTermino = document.getElementById('dataTermino').value;
+
+            const query = `
+                mutation {
+                    createActivity(
+                        title: "${nomeAtividade}",
+                        accountId: 5096123,
+                        folderId: 5096887,
+                        description: "${descricao}",
+                        responsibleId: 88061,
+                        estimatedStart: "${dataInicio}",
+                        estimatedEnd: "${dataTermino}"
+                    ) {
+                        id
+                    }
+                }
+            `;
+
+            try {
+                const response = await fetch(url, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`,
+                        'OrganizationId': organizationId
+                    },
+                    body: JSON.stringify({ query }),
+                });
+
+                const data = await response.json();
+                console.log('Atividade criada:', data.data.createActivity);
+            } catch (error) {
+                console.error('Erro ao criar atividade:', error);
+            }
         }
     </script>
 </body>
