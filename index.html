@@ -24,11 +24,14 @@
         <button type="button" onclick="criarAtividade()">Criar Atividade</button>
     </form>
 
+    <div id="mensagem"></div>
+    <div id="atividadesRegistradas"></div>
+
     <script>
         async function criarAtividade() {
             const corsAnywhereUrl = 'https://artia-b7b651191bad.herokuapp.com/';
             const apiUrl = 'https://app.artia.com/graphql';
-            const token = 'eyJhbGciOiJIUzI1NiJ9.eyJvcmdhbml6YXRpb25faWQiOjE0MTAyOSwiZXhwIjoxNzA3MDgwMDk2fQ.pVQXsj1-cRCRTm8ezWR7xi10SMKgOX7mvmGh19kS3Mg';
+            const token = 'Seu-Token-AQUI';
             const organizationId = 141029;
 
             const nomeAtividade = document.getElementById('nomeAtividade').value;
@@ -48,6 +51,7 @@
                         estimatedEnd: "${dataTermino}"
                     ) {
                         id
+                        title
                     }
                 }
             `;
@@ -64,7 +68,14 @@
                 });
 
                 const data = await response.json();
-                console.log('Atividade criada:', data.data.createActivity);
+
+                // Exibir mensagem de sucesso
+                document.getElementById('mensagem').innerHTML = 'Atividade criada com sucesso!';
+
+                // Exibir atividades registradas
+                const atividadesRegistradas = document.getElementById('atividadesRegistradas');
+                const atividade = data.data.createActivity;
+                atividadesRegistradas.innerHTML += `<p>ID: ${atividade.id}, Título: ${atividade.title}</p>`;
             } catch (error) {
                 console.error('Erro ao criar atividade:', error);
             }
